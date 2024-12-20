@@ -146,4 +146,19 @@ body {
 .calendar .days .today{
     font-size: 2rem;
 }
+.calendar .days .event{
+    position: relative;
+}
+.calendar .days .event::after{
+    content: '';
+    position:absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 75%;
+    height: 6px;
+    border-radius:30px;
+    transform: translateX(-50%);
+    background-color: var(--primary-clr);
+}
+
 

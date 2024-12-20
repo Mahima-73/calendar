@@ -93,7 +93,7 @@ body {
     font-weight: 500;
     text-transform: capitalize;
 }
-.calendar .weedays div {
+.calendar .weekdays div {
     width: 14.28%;
     height: 100%;
     display: flex;
@@ -120,7 +120,7 @@ body {
     color: var(--primary-clr);
     border: 1px solid #f5f5f5;
 }
-.calendar .days:not(.prev-date, .next-date):hover {
+.calendar .day:not(.prev-date):not(.next-date):hover {
     color: #fff;
     background-color:var(--primary-clr);
 }
@@ -159,6 +159,16 @@ body {
     border-radius:30px;
     transform: translateX(-50%);
     background-color: var(--primary-clr);
+}
+.calendar .days .day:hover.event::after{
+    background-color: #fff;
+}
+.calendar .days .active.event::after{
+    background-color: #fff;
+    bottom:20%;
+}
+.calendar .days .active .event {
+    padding-bottom: 10px;
 }
 
 

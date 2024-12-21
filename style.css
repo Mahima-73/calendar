@@ -181,7 +181,7 @@ body {
     margin-bottom: 20px;
     color: var(--primary-clr);
 }
-.caalendar .goto-today .goto{
+.calendar .goto-today .goto{
     display: flex;
     align-items: center;
     border-radius: 5px;

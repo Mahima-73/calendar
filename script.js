@@ -2,7 +2,10 @@ const calendar =document.querySelector(".calendar"),
 date = document.querySelector(".date"),
 daysContainer = document.querySelector(".days"),
 prev = document.querySelector(".prev"),
-next = document.querySelector(".next")
+next = document.querySelector(".next"),
+todayBtn = document.querySelector(".today-btn"),
+gotoBtn = document.querySelector(".goto-btn"),
+dateInput = document.querySelector(".date-input");
 
 let today = new Date();
 let activeDay;
@@ -77,7 +80,47 @@ function nextMonth(){
         month = 0;
         year++;
     }initCalendar();
-} //eventListerner to go to prev month and next month
+} //eventListener to go to prev month and next month
 prev.addEventListener("click", prevMonth);
 next.addEventListener("click", nextMonth); //calendar done here
-//now goto and today button
+//today button
+todayBtn.addEventListener("click", () => {
+    today = new Date();
+    month = today.getMonth();
+    year = today.getFullYear();
+    initCalendar();
+});
+
+dateInput.addEventListener("input", (e) => {
+    dateInput.value = dateInput.value.replace(/[^0-9/]/g, ""); 
+    //allow only numerical values 
+    if (dateInput.value.length ===2) {
+        //add a slash if two number entered
+        dateInput.value += "/";
+    }
+    if (dateInput.value.length > 7 ) {
+        //dont allow more than 7 character
+        dateInput.value = dateInput.value.slice(0,7); 
+    }
+    if (e.inputType === "deleteContentBackward") {
+        if(dateInput.value.length === 3){
+            dateInput.value = dateInput.value.slice(0,2);
+        }
+    }
+});
+gotoBtn.addEventListener("click", gotoDate);
+//function to go to entered date
+ function gotoDate(){
+    const dateArr = dateInput.value.split("/");
+    //some date validation
+    if (dateArr.length === 2) {
+        if ( dateArr[0] > 0 && dateArr[0] < 13 &&dateArr[1].length === 4) {
+            month = dateArr[0] - 1;
+            year = dateArr[1];
+            initCalendar();
+            return;
+        }
+    }
+    //if invalid date
+    alert ("invalid date");
+ }

@@ -299,7 +299,7 @@ font-size: 0.5rem;
     margin-left: 15px;
     pointer-events: none;
 }
-.event::after{
+.events .event::after{
     content: "✓";
     position: absolute;
     top: 50%; 
@@ -313,7 +313,7 @@ font-size: 0.5rem;
     color: var(--primary-clr);
     transform: translateY(-50%);
 }
-.event:hover::after {
+.events .event:hover::after {
     display: flex;
 }
 .add-event-wrapper{

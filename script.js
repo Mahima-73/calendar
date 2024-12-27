@@ -26,6 +26,38 @@ const months = [
     "November",
     "December",
 ];
+
+//deafults event array
+const eventsArr = [{
+    day: 13,
+    month: 11,
+    year: 2022,
+    events: [
+        { 
+            title: "Event 1",
+            time:"10:00 AM",
+        },
+        {
+            title: "Event 2",
+            time: "11:00 AM",
+        }
+    ]
+},
+{
+    day: 24,
+    month: 12,
+    year: 2024,
+    events: [
+        { 
+            title: "Event 1",
+            time:"10:00 AM",
+        },
+        {
+            title: "Event 2",
+            time: "11:00 AM",
+        }
+    ]
+}]
 //function to add days
 function initCalendar() {
     //to get prev month days and current month all days and rem next month days
@@ -47,16 +79,33 @@ function initCalendar() {
     }
     //current month days
     for (let i=1; i<=lastDate; i++){
+
+        //check if event present on current day
+        let event = false;
+        eventsArr.forEach((eventObj) => {
+            if (
+                eventObj.day === i &&
+                eventObj.month === month + 1 &&
+                eventObj.year === year
+            ) {
+                event = true;
+            }
+        });
+
         //if day is today add class today
         if(
             i === new Date().getDate()&&
             year === new Date().getFullYear()&&
             month === new Date().getMonth()
-        ) {        
-            days += `<div class ="day today" > ${i}</div>`;
+        ) { //if event found also add event class 
+            if (event) {      
+            days += `<div class ="day today event" > ${i}</div>`;}
+            else { days += `<div class ="day today" > ${i}</div>`;}
     }  //add remaing as it is
     else{
-        days += `<div class="day"> ${i}</div>`;
+        if (event) {      
+            days += `<div class ="day event" > ${i}</div>`;}
+            else { days += `<div class ="day" > ${i}</div>`;}
     }}
     //next month days
     for (let j=1; j <= nextDays; j++){

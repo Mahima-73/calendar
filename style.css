@@ -321,13 +321,14 @@ font-size: 0.5rem;
     bottom: 100px;
     left: 50%;
     width: 90%;
+    max-height: 0;
     overflow: hidden;
     border-radius: 5px;
     background-color: #fff;
     transform: translateX(-50%);
     transition: max-height 0.5s;
 }
-.add-event-wrapper .active{
+.add-event-wrapper.active{
     max-height: 300px;
 }
 .add-event-header{

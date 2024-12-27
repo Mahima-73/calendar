@@ -124,3 +124,61 @@ gotoBtn.addEventListener("click", gotoDate);
     //if invalid date
     alert ("invalid date");
  }
+
+const addEventBtn = document.querySelector(".add-event"),
+addEventContainer = document.querySelector(".add-event-wrapper"),
+addEventCloseBtn = document.querySelector(".close"),
+addEventTitle = document.querySelector(".event-name"),
+addEventFrom = document.querySelector(".event-time-from"),
+addEventTo = document.querySelector(".event-time-to");
+
+addEventBtn.addEventListener("click", () => {
+    addEventContainer.classList.toggle("active");
+});
+addEventCloseBtn.addEventListener("click", () => {
+    addEventContainer.classList.remove("active");
+});
+document.addEventListener("click", (e) => { //if click outside
+    if (e.target !== addEventBtn && !addEventContainer.contains(e.target)) {
+        addEventContainer.classList.remove("active");
+    }
+});
+// allow only 50 chars in the title
+addEventTitle.addEventListener("input", (e) => {
+    addEventTitle.value = addEventTitle.value.slice(0,50);
+});
+//time format in from and to time
+addEventFrom.addEventListener("input", (e) => {
+    //remove anything other than numbers
+    addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+    //if two numbers entered auto add :
+    if (addEventFrom.value.length === 2) {
+        addEventFrom.value += ":";
+    }
+    //dont let user enter more than 5 chars
+    if (addEventFrom.value.length > 5) {
+        addEventFrom.value = addEventFrom.value.slice(0, 5);
+    }
+    if (e.inputType === "deleteContentBackward") {
+        if(addEventFrom.value.length === 3){
+            addEventFrom.value = addEventFrom.value.slice(0,2);
+        }
+    }
+});
+addEventTo.addEventListener("input", (e) => {
+    //remove anything other than numbers
+    addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
+    //if two numbers entered auto add :
+    if (addEventTo.value.length === 2) {
+        addEventTo.value += ":";
+    }
+    //dont let user enter more than 5 chars
+    if (addEventTo.value.length > 5) {
+        addEventTo.value = addEventTo.value.slice(0, 5);
+    }
+    if (e.inputType === "deleteContentBackward") {
+        if(addEventTo.value.length === 3){
+            addEventTo.value = addEventTo.value.slice(0,2);
+        }
+    }
+});
